@@ -1,97 +1,194 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Bitfinex Order Book Mobile App
 
-# Getting Started
+A React Native mobile application that replicates the Order Book functionality from the Bitfinex trading platform, built with real-time WebSocket data integration.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Features
 
-## Step 1: Start Metro
+### Order Book Widget
+- **Real-time Data**: Live order book updates via Bitfinex WebSocket V2 API
+- **Dual Layout**: Bids (buy orders) on the left, Asks (sell orders) on the right
+- **Depth Visualization**: Color-coded depth bars showing order volume
+- **Precision Control**: Adjustable price precision (P0, P1, P2, P3)
+- **Scale Control**: Adjustable depth bar scaling (0.5x, 1x, 2x)
+- **Cumulative Totals**: Shows running totals for better market depth understanding
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### Trades Widget
+- **Recent Trades**: Display of latest market trades
+- **Color Coding**: Green for buy trades, Red for sell trades
+- **Time Stamps**: Real-time trade timestamps
+- **Market Tab**: Currently shows "Market" trades (expandable for other types)
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### Connection Management
+- **WebSocket Controls**: Connect/Disconnect buttons
+- **Connection Status**: Visual indicator showing connection state
+- **Auto-reconnection**: Automatic reconnection on network loss
+- **Error Handling**: Graceful handling of connection issues
 
-```sh
-# Using npm
+## 🛠️ Technical Implementation
+
+### Architecture
+- **React Native**: Cross-platform mobile development
+- **Redux Toolkit**: State management for market data
+- **TypeScript**: Type-safe development
+- **WebSocket**: Real-time data streaming
+
+### Data Flow
+1. **WebSocket Connection**: Connects to Bitfinex API
+2. **Data Processing**: Processes order book snapshots and updates
+3. **State Management**: Redux store manages order book state
+4. **UI Updates**: Components re-render with real-time data
+
+### Key Components
+- `OrderBook`: Main order book display with depth visualization
+- `OrderRow`: Individual order row with depth bars
+- `Trades`: Recent trades display
+- `Controls`: Connection and display controls
+- `wsService`: WebSocket connection management
+
+## 📱 UI/UX Features
+
+### Design
+- **Dark Theme**: Professional trading interface
+- **Responsive Layout**: Adapts to different screen sizes
+- **Visual Hierarchy**: Clear information organization
+- **Interactive Controls**: Intuitive precision and scale adjustments
+
+### Color Scheme
+- **Bids**: Green (#10b981) for buy orders
+- **Asks**: Red (#ef4444) for sell orders
+- **Background**: Dark (#0f1720) for reduced eye strain
+- **Text**: High contrast white and gray tones
+
+## 🔌 API Integration
+
+### Bitfinex WebSocket V2
+- **Endpoint**: `wss://api-pub.bitfinex.com/ws/2`
+- **Channel**: Book channel for order book data
+- **Format**: Real-time snapshots and updates
+- **Symbol**: BTC/USD (tBTCUSD)
+
+### Data Structure
+```typescript
+interface OrderBookEntry {
+  price: number;
+  count: number;
+  amount: number;
+  total: number; // Cumulative total
+}
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- React Native CLI
+- iOS Simulator or Android Emulator
+- Xcode (for iOS development)
+
+### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
+cd AwesomeProject
+
+# Install dependencies
+npm install
+
+# iOS (requires macOS)
+npx react-native run-ios
+
+# Android
+npx react-native run-android
+```
+
+### Development
+```bash
+# Start Metro bundler
 npm start
 
-# OR using Yarn
-yarn start
+# Run on specific simulator
+npx react-native run-ios --simulator="iPhone 16 Pro"
 ```
 
-## Step 2: Build and run your app
+## 📊 Order Book Features
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### Precision Levels
+- **P0**: No decimal places (34,829)
+- **P1**: 1 decimal place (34,829.0)
+- **P2**: 2 decimal places (34,829.00)
+- **P3**: 3 decimal places (34,829.000)
 
-### Android
+### Scale Options
+- **0.5x**: Reduced depth bar visibility
+- **1x**: Standard depth bar scaling
+- **2x**: Enhanced depth bar visibility
 
-```sh
-# Using npm
-npm run android
+### Depth Visualization
+- **Bid Depth**: Green bars extending from left
+- **Ask Depth**: Red bars extending from right
+- **Proportional**: Bar width represents relative volume
 
-# OR using Yarn
-yarn android
-```
+## 🔧 Configuration
 
-### iOS
+### WebSocket Settings
+- **Reconnection Delay**: Starts at 1 second, increases exponentially
+- **Max Reconnection Delay**: 30 seconds
+- **Heartbeat Handling**: Automatic heartbeat processing
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+### Display Settings
+- **Default Precision**: P0 (configurable)
+- **Default Scale**: 1x (configurable)
+- **Order Limit**: 25 orders per side (configurable)
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+## 🧪 Testing
 
-```sh
-bundle install
-```
+### Manual Testing
+- Connect/Disconnect functionality
+- Precision and scale adjustments
+- Real-time data updates
+- Network interruption handling
 
-Then, and every time you update your native dependencies, run:
+### Component Testing
+- Order book rendering
+- Trade display
+- Control interactions
+- State management
 
-```sh
-bundle exec pod install
-```
+## 🚧 Future Enhancements
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Planned Features
+- **Price Alerts**: Set price notifications
+- **Layout Configuration**: Customizable widget arrangement
+- **Additional Symbols**: Support for more trading pairs
+- **Advanced Charts**: Technical analysis tools
+- **Order Placement**: Execute trades directly
 
-```sh
-# Using npm
-npm run ios
+### Technical Improvements
+- **Performance Optimization**: Virtual scrolling for large order books
+- **Offline Support**: Cached data when disconnected
+- **Push Notifications**: Real-time price alerts
+- **Biometric Security**: Touch ID/Face ID integration
 
-# OR using Yarn
-yarn ios
-```
+## 📄 License
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+This project is for educational and demonstration purposes. Please refer to Bitfinex's terms of service for API usage.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 🤝 Contributing
 
-## Step 3: Modify your app
+Contributions are welcome! Please ensure:
+- Code follows existing patterns
+- TypeScript types are properly defined
+- Components are properly tested
+- Documentation is updated
 
-Now that you have successfully run the app, let's make changes!
+## 📞 Support
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+For technical issues or questions:
+- Check the existing documentation
+- Review the code structure
+- Test with different network conditions
+- Verify Bitfinex API status
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+---
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+**Note**: This application is a demonstration of React Native development and WebSocket integration. It is not affiliated with Bitfinex and should not be used for actual trading without proper verification and compliance with financial regulations.
