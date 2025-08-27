@@ -11,12 +11,13 @@
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.80.2",
+    "@reduxjs/toolkit": "^2.8.2",
+    "eventemitter3": "^4.0.7",
     "react": "19.1.0",
     "react-native": "0.80.2",
     "react-native-vector-icons": "^10.3.0",
-    "@reduxjs/toolkit": "^1.9.5",
-    "react-redux": "^8.0.5",
-    "eventemitter3": "^4.0.7"
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

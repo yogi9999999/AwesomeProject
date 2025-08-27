@@ -12,11 +12,6 @@ A React Native mobile application that replicates the Order Book functionality f
 - **Scale Control**: Adjustable depth bar scaling (0.5x, 1x, 2x)
 - **Cumulative Totals**: Shows running totals for better market depth understanding
 
-### Trades Widget
-- **Recent Trades**: Display of latest market trades
-- **Color Coding**: Green for buy trades, Red for sell trades
-- **Time Stamps**: Real-time trade timestamps
-- **Market Tab**: Currently shows "Market" trades (expandable for other types)
 
 ### Connection Management
 - **WebSocket Controls**: Connect/Disconnect buttons
@@ -109,85 +104,9 @@ npm start
 # Run on specific simulator
 npx react-native run-ios --simulator="iPhone 16 Pro"
 ```
-
-## 📊 Order Book Features
-
-### Precision Levels
-- **P0**: No decimal places (34,829)
-- **P1**: 1 decimal place (34,829.0)
-- **P2**: 2 decimal places (34,829.00)
-- **P3**: 3 decimal places (34,829.000)
-
-### Scale Options
-- **0.5x**: Reduced depth bar visibility
-- **1x**: Standard depth bar scaling
-- **2x**: Enhanced depth bar visibility
-
-### Depth Visualization
-- **Bid Depth**: Green bars extending from left
-- **Ask Depth**: Red bars extending from right
-- **Proportional**: Bar width represents relative volume
-
-## 🔧 Configuration
-
-### WebSocket Settings
-- **Reconnection Delay**: Starts at 1 second, increases exponentially
-- **Max Reconnection Delay**: 30 seconds
-- **Heartbeat Handling**: Automatic heartbeat processing
-
-### Display Settings
-- **Default Precision**: P0 (configurable)
-- **Default Scale**: 1x (configurable)
-- **Order Limit**: 25 orders per side (configurable)
-
-## 🧪 Testing
-
-### Manual Testing
-- Connect/Disconnect functionality
-- Precision and scale adjustments
-- Real-time data updates
-- Network interruption handling
-
-### Component Testing
-- Order book rendering
-- Trade display
-- Control interactions
-- State management
-
-## 🚧 Future Enhancements
-
-### Planned Features
-- **Price Alerts**: Set price notifications
-- **Layout Configuration**: Customizable widget arrangement
-- **Additional Symbols**: Support for more trading pairs
-- **Advanced Charts**: Technical analysis tools
-- **Order Placement**: Execute trades directly
-
-### Technical Improvements
-- **Performance Optimization**: Virtual scrolling for large order books
-- **Offline Support**: Cached data when disconnected
-- **Push Notifications**: Real-time price alerts
-- **Biometric Security**: Touch ID/Face ID integration
-
 ## 📄 License
 
 This project is for educational and demonstration purposes. Please refer to Bitfinex's terms of service for API usage.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please ensure:
-- Code follows existing patterns
-- TypeScript types are properly defined
-- Components are properly tested
-- Documentation is updated
-
-## 📞 Support
-
-For technical issues or questions:
-- Check the existing documentation
-- Review the code structure
-- Test with different network conditions
-- Verify Bitfinex API status
 
 ---
 
