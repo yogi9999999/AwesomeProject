@@ -3,21 +3,11 @@ import { Provider } from 'react-redux';
 import { SafeAreaView, StatusBar, StyleSheet, View, Text, FlatList } from 'react-native';
 import store from './src/store';
 import OrderBook from './src/components/OrderBook';
-import Trades from './src/components/Trades';
 
 export default function App() {
-    const mockTrades: Array<{ time: string; price: string; amount: string; side: 'buy' | 'sell' }> = [
-        { time: '16:21:36', price: '34,826', amount: '0.0456', side: 'sell' },
-        { time: '16:21:36', price: '34,827', amount: '0.3223', side: 'sell' },
-        { time: '16:21:36', price: '34,827', amount: '0.0024', side: 'sell' },
-        { time: '16:21:16', price: '34,829', amount: '0.0824', side: 'buy' },
-        { time: '16:21:16', price: '34,829', amount: '0.0026', side: 'buy' },
-    ];
-
     const sections = [
         { type: 'header', id: 'header' },
         { type: 'orderbook', id: 'orderbook' },
-        { type: 'trades', id: 'trades' },
     ];
 
     const renderSection = ({ item }: { item: { type: string; id: string } }) => {
@@ -33,9 +23,6 @@ export default function App() {
             
             case 'orderbook':
                 return <OrderBook symbol="tBTCUSD" />;
-            
-            case 'trades':
-                return <Trades trades={mockTrades} />;
             
             default:
                 return null;
